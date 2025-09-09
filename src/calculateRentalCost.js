@@ -6,21 +6,19 @@
 function calculateRentalCost(days) {
   // write code here
 
-  const ussualCost = 40;
-  const more7Days = 50;
-  const specialCost = 20;
+  const DAILY_RATE = 40;
+  const LONG_TERM_DISCOUNT = 50;
+  const MID_TERM_DISCOUNT = 20;
+  const MID_TERM_DAYS = 3;
+  const LONG_TERM_DAYS = 7;
 
-  if (days < 3) {
-    return days * ussualCost;
-  }
+  const basePrice = days * DAILY_RATE
 
-  if (days >= 3 && days < 7) {
-    return days * ussualCost - specialCost;
-  }
+  if (days < MID_TERM_DAYS) return basePrice;
+  if (days >= MID_TERM_DAYS && days < LONG_TERM_DAYS) return basePrice - MID_TERM_DISCOUNT;
+  if (days >= LONG_TERM_DAYS) return basePrice - LONG_TERM_DISCOUNT;
 
-  if (days >= 7) {
-    return days * ussualCost - more7Days;
-  }
+  return basePrice;
 }
 
 module.exports = calculateRentalCost;
